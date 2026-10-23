@@ -1,0 +1,26 @@
+[
+    {
+        "test_id": "valid_login",
+        "username": "standard_user",
+        "password": "secret_sauce",
+        "expected": "success"
+    },
+    {
+        "test_id": "invalid_password",
+        "username": "standard_user",
+        "password": "wrong_password",
+        "expected": "Epic sadface: Username and password do not match any user in this service"
+    },
+    {
+        "test_id": "invalid_username",
+        "username": "wrong_user",
+        "password": "secret_sauce",
+        "expected": "Epic sadface: Username and password do not match any user in this service"
+    },
+    {
+        "test_id": "empty_credentials",
+        "username": "",
+        "password": "",
+        "expected": "Epic sadface: Username is required"
+    }
+]

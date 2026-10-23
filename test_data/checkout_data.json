@@ -1,0 +1,30 @@
+{
+  "valid_customer": {
+    "first_name": "Muhammad",
+    "last_name": "Zaid",
+    "postal_code": "71000"
+  },
+  "invalid_info": [
+    {
+      "test_id": "missing_first_name",
+      "first_name": "",
+      "last_name": "Zaid",
+      "postal_code": "71000",
+      "expected_error": "Error: First Name is required"
+    },
+    {
+      "test_id": "missing_last_name",
+      "first_name": "Muhammad",
+      "last_name": "",
+      "postal_code": "71000",
+      "expected_error": "Error: Last Name is required"
+    },
+    {
+      "test_id": "missing_postal_code",
+      "first_name": "Muhammad",
+      "last_name": "Zaid",
+      "postal_code": "",
+      "expected_error": "Error: Postal Code is required"
+    }
+  ]
+}
