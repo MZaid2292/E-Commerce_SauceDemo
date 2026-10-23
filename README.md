@@ -103,7 +103,4 @@ Manual QA artifacts are in the `docs/` folder:
 - `test_plan.md`
 - `test_cases.md`
 
-## Author
-
-**Muhammad Zaid**
-[GitHub](https://github.com/MZaid2292) · [LinkedIn](https://linkedin.com/in/muhammad-zaid-nizamani-078784291)
+ 
