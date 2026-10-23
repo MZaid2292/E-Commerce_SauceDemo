@@ -1,5 +1,7 @@
 # SauceDemo E-Commerce QA Automation Framework
 
+![UI Tests](https://github.com/MZaid2292/E-Commerce_SauceDemo/actions/workflows/tests.yml/badge.svg)
+
 End-to-end UI test automation framework for the [SauceDemo](https://www.saucedemo.com) e-commerce website, built with **Python, Playwright and Pytest** using a Hybrid Framework approach (Page Object Model + Data-Driven Testing).
 
 ## Tech Stack
@@ -11,6 +13,7 @@ End-to-end UI test automation framework for the [SauceDemo](https://www.saucedem
 | Pytest | Test runner, fixtures, markers, parametrization |
 | pytest-html | HTML test report |
 | JSON | External test data |
+| GitHub Actions | Continuous Integration |
 
 ## Framework Features
 
@@ -22,10 +25,13 @@ End-to-end UI test automation framework for the [SauceDemo](https://www.saucedem
 - **Auto screenshot on failure**, embedded in the HTML report
 - **Playwright trace** saved on failure for step-by-step debugging
 - **Logging** of page actions to a log file
+- **CI pipeline** with GitHub Actions on every push and pull request
 
 ## Project Structure
 
 ```
+├── .github/workflows/
+│   └── tests.yml           # GitHub Actions CI pipeline
 ├── pages/                  # Page Object classes
 │   ├── base_page.py        # Common actions (click, fill, logout)
 │   ├── login_page.py
@@ -40,7 +46,9 @@ End-to-end UI test automation framework for the [SauceDemo](https://www.saucedem
 │   ├── test_checkout.py
 │   └── test_logout.py
 ├── test_data/              # JSON test data
-├── utils/                  # Config and data loader
+├── utils/
+│   ├── config.py           # URLs, credentials, browser settings
+│   └── data_loader.py      # JSON loader
 ├── docs/                   # Test plan and test cases
 ├── conftest.py             # Fixtures and reporting hooks
 ├── pytest.ini              # Pytest configuration and markers
@@ -61,8 +69,8 @@ End-to-end UI test automation framework for the [SauceDemo](https://www.saucedem
 ## Setup
 
 ```bash
-git clone https://github.com/MZaid2292/saucedemo-qa-automation.git
-cd saucedemo-qa-automation
+git clone https://github.com/MZaid2292/E-Commerce_SauceDemo.git
+cd E-Commerce_SauceDemo
 
 python -m venv .venv
 # Windows
@@ -97,10 +105,13 @@ Open a trace:
 playwright show-trace reports/traces/<test_name>.zip
 ```
 
+## Continuous Integration
+
+Tests run automatically on GitHub Actions for every push and pull request to `main`. The browser runs headless in CI, and the `reports/` folder is uploaded as a downloadable artifact (`test-reports`) for each run.
+
 ## Documentation
 
 Manual QA artifacts are in the `docs/` folder:
 - `test_plan.md`
 - `test_cases.md`
 
- 
