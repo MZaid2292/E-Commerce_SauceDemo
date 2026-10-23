@@ -1,3 +1,5 @@
+from playwright.sync_api import TimeoutError as PlaywrightTimeoutError
+
 import logging
 
 logger = logging.getLogger(__name__)
@@ -25,8 +27,13 @@ class BasePage:
     def get_text(self, locator):
         return self.page.locator(locator).inner_text()
 
-    def is_visible(self, locator):
-        return self.page.locator(locator).is_visible()
+    def is_visible(self, locator, timeout=5000):
+        """Element ke visible hone ka wait karta hai (max 5 sec)."""
+        try:
+            self.page.locator(locator).wait_for(state="visible", timeout=timeout)
+            return True
+        except PlaywrightTimeoutError:
+            return False
 
     def logout(self):
         logger.info("Logging out")
