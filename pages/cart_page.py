@@ -12,10 +12,10 @@ class CartPage(BasePage):
         return self.page.locator(self.TITLE).inner_text()
 
     def get_item_count(self):
-        return self.page.locator(self.CART_ITEMS).count()
+        return self.get_count(self.CART_ITEMS)
 
     def get_item_names(self):
-        return self.page.locator(self.ITEM_NAMES).all_inner_texts()
+        return self.get_all_texts(self.ITEM_NAMES)
 
     def remove_item(self, name):
         (

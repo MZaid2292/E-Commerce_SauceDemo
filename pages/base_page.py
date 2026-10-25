@@ -39,3 +39,15 @@ class BasePage:
         logger.info("Logging out")
         self.click_element(self.MENU_BUTTON)
         self.click_element(self.LOGOUT_LINK)
+
+    def get_all_texts(self, locator):
+        """Pehle item ke visible hone ka wait karta hai, phir saare texts deta hai."""
+        items = self.page.locator(locator)
+        items.first.wait_for(state="visible")
+        return items.all_inner_texts()
+
+    def get_count(self, locator):
+        """Pehle item ke visible hone ka wait karta hai, phir count deta hai."""
+        items = self.page.locator(locator)
+        items.first.wait_for(state="visible")
+        return items.count()    

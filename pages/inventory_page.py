@@ -16,13 +16,13 @@ class InventoryPage(BasePage):
         return self.page.locator(self.TITLE).inner_text()
 
     def get_item_count(self):
-        return self.page.locator(self.ITEMS).count()
+        return self.get_count(self.ITEMS)
 
     def get_item_names(self):
-        return self.page.locator(self.ITEM_NAMES).all_inner_texts()
+        return self.get_all_texts(self.ITEM_NAMES)
 
     def get_item_prices(self):
-        texts =  self.page.locator(self.ITEM_PRICES).all_inner_texts()
+        texts = self.get_all_texts(self.ITEM_PRICES)
         return [float(t.replace("$", "")) for t in texts]
 
     def sort_by(self,option):
@@ -45,4 +45,5 @@ class InventoryPage(BasePage):
         return int(badge.inner_text()) if badge.count() > 0 else 0
 
     def open_cart(self):
-        self.page.locator(self.CART_LINK).click()    
+        self.page.locator(self.CART_LINK).click()
+        self.page.wait_for_url("**/cart.html")    

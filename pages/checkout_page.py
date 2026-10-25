@@ -42,10 +42,10 @@ class CheckoutOverviewPage(BasePage):
         return self.page.locator(self.TITLE).inner_text()
 
     def get_item_names(self):
-        return self.page.locator(self.ITEM_NAMES).all_inner_texts()
+        return self.get_all_texts(self.ITEM_NAMES)
 
     def get_item_prices(self):
-        texts = self.page.locator(self.ITEM_PRICES).all_inner_texts()
+        texts = self.get_all_texts(self.ITEM_PRICES)
         return [float(t.replace("$", "")) for t in texts]
 
     def get_subtotal(self):
