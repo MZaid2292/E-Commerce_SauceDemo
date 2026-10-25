@@ -35,7 +35,6 @@ def pytest_runtest_makereport(item, call):
         path = SCREENSHOTS_DIR / f"{safe_name(item.name)}.png"
         image_bytes = page.screenshot(path=str(path), full_page=True)
 
-        # Screenshot ko HTML report ke andar embed karo
         html_plugin = item.config.pluginmanager.getplugin("html")
         if html_plugin:
             extras = getattr(report, "extras", [])
@@ -59,12 +58,12 @@ def page(browser, request):
 
     page = context.new_page()
     page.set_default_timeout(DEFAULT_TIMEOUT)
-    page.goto(BASE_URL)
+    page.set_default_navigation_timeout(30000)
+    page.goto(BASE_URL, wait_until="domcontentloaded")
     yield page
 
     page.wait_for_timeout(DEMO_PAUSE)
 
-    # Trace sirf fail hone pe save karo
     rep = getattr(request.node, "rep_call", None)
     if rep is not None and rep.failed:
         TRACES_DIR.mkdir(parents=True, exist_ok=True)
@@ -77,7 +76,7 @@ def page(browser, request):
 
 @pytest.fixture
 def logged_in_page(page):
-    page.goto(BASE_URL)
+    page.goto(BASE_URL, wait_until="domcontentloaded")
     LoginPage(page).login(STANDARD_USER, PASSWORD)
     page.wait_for_url("**/inventory.html")
     return page

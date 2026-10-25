@@ -7,7 +7,7 @@ pytestmark = [pytest.mark.inventory, pytest.mark.regression]
 def test_inventory_page_loads(logged_in_page):
     inventory = InventoryPage(logged_in_page)
     expect(logged_in_page).to_have_url("https://www.saucedemo.com/inventory.html")
-    assert inventory.get_title() == "Products"
+    expect(logged_in_page.locator(InventoryPage.TITLE)).to_have_text("Products")
 
 def test_six_products_displayed(logged_in_page):
     inventory = InventoryPage(logged_in_page)

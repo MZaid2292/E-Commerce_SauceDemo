@@ -50,7 +50,7 @@ def test_cart_page_shows_added_items(logged_in_page):
 
     cart = CartPage(logged_in_page)
     expect(logged_in_page).to_have_url("https://www.saucedemo.com/cart.html")
-    assert cart.get_title() == "Your Cart"
+    expect(logged_in_page.locator(CartPage.TITLE)).to_have_text("Your Cart")
     assert sorted(cart.get_item_names()) == sorted([BACKPACK, BOLT_SHIRT])
 
 

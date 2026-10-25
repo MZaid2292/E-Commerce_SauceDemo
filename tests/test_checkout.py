@@ -45,7 +45,8 @@ def test_overview_shows_items_and_correct_total(logged_in_page):
     info.continue_checkout()
 
     overview = CheckoutOverviewPage(logged_in_page)
-    assert overview.get_title() == "Checkout: Overview"
+    expect(logged_in_page).to_have_url(f"{BASE_URL}/checkout-step-two.html")
+    expect(logged_in_page.locator(CheckoutOverviewPage.TITLE)).to_have_text("Checkout: Overview")
     assert sorted(overview.get_item_names()) == sorted([BACKPACK, BIKE_LIGHT])
 
     # subtotal = items ka sum, total = subtotal + tax
